@@ -1,0 +1,9 @@
+services:
+  # docker compose run dummy_app uv run write "I succeeded this time" --filename output/output.txt
+  dummy_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uv run write "I succeeded this time" --filename output/output.txt
+    volumes:
+      - ../output:/app/output
