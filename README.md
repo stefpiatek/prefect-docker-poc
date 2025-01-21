@@ -3,7 +3,7 @@
 Trying to get the simplest version of experimenting with a dockerised run being called from prefect using local process workers. 
 Covers the main areas that we'd want to be sure of before investing real effort into incorporating real workflows into prefect. 
 
-## From `prefect-poc`
+## From `prefect-poc` sub directory
 
 ```shell
 export PREFECT_SERVER_API_AUTH_STRING="admin:pass"
