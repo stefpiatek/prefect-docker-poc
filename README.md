@@ -24,6 +24,7 @@ In another screen/terminal, load config for three versions of the `run_docker` f
 
 ```shell
 export PREFECT_API_AUTH_STRING="admin:pass"
+export PREFECT_API_URL=http://localhost:4200/api
 uv run python src/prefect_poc/run_docker.py
 ```
 
@@ -31,6 +32,7 @@ Now that we have the flow configuration, deploy them. You should see some concur
 
 ```shell
 export PREFECT_API_AUTH_STRING="admin:pass"
+export PREFECT_API_URL=http://localhost:4200/api
 uv run prefect deployment run 'run-docker/first'
 sleep 5 
 uv run prefect deployment run 'run-docker/second'
