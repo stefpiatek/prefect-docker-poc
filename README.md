@@ -10,6 +10,7 @@ and their implementation in the code.
 
 ```shell
 export PREFECT_SERVER_API_AUTH_STRING="admin:pass"
+export PREFECT_API_AUTH_STRING="admin:pass"
 uv run prefect server start
 ```
 
