@@ -1,0 +1,72 @@
+# Welcome to your prefect.yaml file! You can use this file for storing and managing
+# configuration for deploying your flows. We recommend committing this file to source
+# control along with your flow code.
+
+# Generic metadata about this project
+name: prefect-poc
+prefect-version: 3.1.13
+
+# build section allows you to manage and build docker images
+build:
+
+# push section allows you to manage if and how this project is uploaded to remote locations
+push:
+
+# pull section allows you to provide instructions for cloning this project in remote locations
+pull:
+- prefect.deployments.steps.git_clone:
+    repository: https://github.com/milanmlft/prefect-docker-poc.git
+    branch: main
+    access_token:
+
+definitions:
+  work_pools:
+    my_work_pool: &my_work_pool
+      name: poc-worker
+      work_queue_name: default
+      job_variables: {}
+  schedules:
+    every_two_minutes: &every_two_minutes
+      interval: 120
+
+# the deployments section allows you to provide configuration for deploying flows
+deployments:
+- name: first
+  version:
+  tags: []
+  description:
+  schedule:
+    interval: 120
+  concurrency_limit: 2
+  entrypoint: src/prefect_poc/run_docker.py:run_docker
+  parameters:
+    input_data: I'm running from Prefect
+  work_pool:
+    name: poc-worker
+    work_queue_name: default
+    job_variables: {}
+  schedules:
+  - interval: 120.0
+    anchor_date: '2025-01-21T17:49:06.372774+00:00'
+    timezone: UTC
+    active: true
+- name: second
+  version:
+  tags: []
+  description:
+  schedule: *every_two_minutes
+  concurrency_limit: 2
+  flow_name:
+  entrypoint: src/prefect_poc/run_docker.py:run_docker
+  parameters: {input_data: Running again}
+  work_pool: *my_work_pool
+- name: third
+  version:
+  tags: []
+  description:
+  schedule: *every_two_minutes
+  concurrency_limit: 2
+  flow_name:
+  entrypoint: src/prefect_poc/run_docker.py:run_docker
+  parameters: {input_data: third time to test concurrency}
+  work_pool: *my_work_pool

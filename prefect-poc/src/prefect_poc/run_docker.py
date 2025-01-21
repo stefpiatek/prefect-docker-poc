@@ -42,32 +42,4 @@ def write(project_path: Path, input_data: str) -> None:
 
 
 if __name__ == "__main__":
-    run_docker.from_source(
-        source=str(Path(__file__).parent),
-        entrypoint="run_docker.py:run_docker",
-    ).deploy(name="first",
-             work_pool_name="poc-worker",
-             tags=["poc"],
-             parameters={"input_data": "I'm running from prefect"},
-             interval=120
-             )
-
-    run_docker.from_source(
-        source=str(Path(__file__).parent),
-        entrypoint="run_docker.py:run_docker",
-    ).deploy(name="second",
-             work_pool_name="poc-worker",
-             tags=["poc"],
-             parameters={"input_data": "Running again"},
-             interval=120
-             )
-
-    run_docker.from_source(
-        source=str(Path(__file__).parent),
-        entrypoint="run_docker.py:run_docker",
-    ).deploy(name="third",
-             work_pool_name="poc-worker",
-             tags=["poc"],
-             parameters={"input_data": "Third time to test concurrency"},
-             interval=120
-             )
+    run_docker()
