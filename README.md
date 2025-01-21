@@ -3,6 +3,9 @@
 Trying to get the simplest version of experimenting with a dockerised run being called from prefect using local process workers. 
 Covers the main areas that we'd want to be sure of before investing real effort into incorporating real workflows into prefect. 
 
+The [prefect-poc/README.md](prefect-poc/README.md) has a checklist of areas of investigation 
+and their implementation in the code. 
+
 ## From `prefect-poc` sub directory
 
 ```shell
