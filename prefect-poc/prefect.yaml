@@ -29,42 +29,42 @@ definitions:
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
-- name: first
-  version:
-  tags: []
-  description:
-  schedule:
-    interval: 120
-  concurrency_limit: 2
-  entrypoint: src/prefect_poc/run_docker.py:run_docker
-  parameters:
-    input_data: I'm running from Prefect
-  work_pool:
-    name: poc-worker
-    work_queue_name: default
-    job_variables: {}
-  schedules:
-  - interval: 120.0
-    anchor_date: '2025-01-21T17:49:06.372774+00:00'
-    timezone: UTC
-    active: true
-- name: second
-  version:
-  tags: []
-  description:
-  schedule: *every_two_minutes
-  concurrency_limit: 2
-  flow_name:
-  entrypoint: src/prefect_poc/run_docker.py:run_docker
-  parameters: {input_data: Running again}
-  work_pool: *my_work_pool
-- name: third
-  version:
-  tags: []
-  description:
-  schedule: *every_two_minutes
-  concurrency_limit: 2
-  flow_name:
-  parameters: {input_data: third time to test concurrency}
-  work_pool: *my_work_pool
+  - name: first
+    version:
+    tags: []
+    description:
+    schedule:
+      interval: 120
+    concurrency_limit: 2
     entrypoint: src/prefect_poc/run_docker.py:run_docker
+    parameters:
+      input_data: I'm running from Prefect
+    work_pool:
+      name: poc-worker
+      work_queue_name: default
+      job_variables: {}
+    schedules:
+      - interval: 120.0
+        anchor_date: "2025-01-21T17:49:06.372774+00:00"
+        timezone: UTC
+        active: true
+  - name: second
+    version:
+    tags: []
+    description:
+    schedule: *every_two_minutes
+    concurrency_limit: 2
+    flow_name:
+    entrypoint: run_docker.py:run_docker
+    parameters: { input_data: Running again }
+    work_pool: *my_work_pool
+  - name: third
+    version:
+    tags: []
+    description:
+    schedule: *every_two_minutes
+    concurrency_limit: 2
+    flow_name:
+    entrypoint: src/prefect_poc/run_docker.py:run_docker
+    parameters: { input_data: third time to test concurrency }
+    work_pool: *my_work_pool
