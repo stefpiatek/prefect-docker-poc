@@ -14,10 +14,8 @@ push:
 
 # pull section allows you to provide instructions for cloning this project in remote locations
 pull:
-- prefect.deployments.steps.git_clone:
-    repository: https://github.com/milanmlft/prefect-docker-poc.git
-    branch: main
-    access_token:
+  - prefect.deployments.steps.set_working_directory:
+      directory: src/prefect_poc/
 
 definitions:
   work_pools:
@@ -67,6 +65,6 @@ deployments:
   schedule: *every_two_minutes
   concurrency_limit: 2
   flow_name:
-  entrypoint: src/prefect_poc/run_docker.py:run_docker
   parameters: {input_data: third time to test concurrency}
   work_pool: *my_work_pool
+    entrypoint: src/prefect_poc/run_docker.py:run_docker
