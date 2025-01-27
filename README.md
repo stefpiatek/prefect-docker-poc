@@ -59,3 +59,42 @@ export PREFECT_API_URL=http://localhost:4200/api
 export PREFECT_API_AUTH_STRING="admin:pass"
 uv run prefect worker start --pool 'poc-worker' --type process --limit 2
 ```
+
+## Alternative: using `prefect.yaml` and `.env` files to configure
+
+Set the authentication environment variables in a `.env` file. Prefect will pick these up automatically.
+
+```shell
+cp .env.sample .env
+```
+
+All configuration options can be set in the `prefect.yaml` file. 
+
+1. Start the server
+
+```shell
+uv run prefect server start
+```
+
+2. Create a worker
+
+```shell
+uv run prefect worker start --pool 'poc-worker' --type process --limit 2
+```
+
+3. Create the deployments
+
+```shell
+uv run prefect deploy --all
+```
+
+4. Schedule the deployment runs
+
+```shell
+uv run prefect deployment run 'run-docker/first'
+sleep 5 
+uv run prefect deployment run 'run-docker/second'
+sleep 5 
+uv run prefect deployment run 'run-docker/third'
+```
+
