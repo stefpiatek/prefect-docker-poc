@@ -33,7 +33,7 @@ definitions:
 deployments:
   - name: first
     version:
-    tags: []
+    tags: ["poc"]
     description:
     schedules:
       - *every_two_minutes
@@ -43,7 +43,7 @@ deployments:
     work_pool: *my_work_pool
   - name: second
     version:
-    tags: []
+    tags: ["poc"]
     description:
     schedules:
       - *every_two_minutes
@@ -54,7 +54,7 @@ deployments:
     work_pool: *my_work_pool
   - name: third
     version:
-    tags: []
+    tags: ["poc"]
     description:
     schedules:
       - *every_two_minutes
