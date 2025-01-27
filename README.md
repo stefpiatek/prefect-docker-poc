@@ -32,14 +32,6 @@ export PREFECT_API_URL=http://localhost:4200/api
 uv run python src/prefect_poc/run_docker.py
 ```
 
-Deploying from the `prefect.yaml` file:
-
-```shell
-export PREFECT_API_AUTH_STRING="admin:pass"
-export PREFECT_API_URL=http://localhost:4200/api
-uv run prefect deploy --all
-```
-
 Now that we have the flow configuration, deploy them. You should see some concurrency limit hit in the logs 
 
 ```shell
