@@ -26,7 +26,7 @@ definitions:
       job_variables: {}
   schedules:
     every_two_minutes: &every_two_minutes
-      interval: 120
+      cron: "*/2 * * * *"
   entrypoint: &run_docker_entrypoint src/prefect_poc/run_docker.py:run_docker
 
 # the deployments section allows you to provide configuration for deploying flows
